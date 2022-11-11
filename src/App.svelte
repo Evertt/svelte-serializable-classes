@@ -11,10 +11,12 @@
 <main>
   {#await registrations then}
     <Server data={[counter]} let:serializedData>
-      <pre>{JSON.stringify(serializedData, null, 2)}</pre>
+      <h2>Counter serialized</h2>
+      <pre>{JSON.stringify(serializedData[0], null, 2)}</pre>
 
       <Client {serializedData} let:unserializedData>
         {#await unserializedData then [newCounter]}
+          <h2>Counter unserialized</h2>
           <pre>{(console.log(newCounter), newCounter.toString())}</pre>
           <pre>newCounter instanceof Counter: {newCounter instanceof Counter}</pre>
 
